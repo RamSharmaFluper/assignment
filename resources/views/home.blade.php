@@ -26,7 +26,7 @@
           <tr class='row_{{$company->id}}'>
             <td>{{$company->name}}</td>      
             <td>{{$company->email}}</td>
-            <td> <img src="{{ asset('storage/'.$company->logo) }}" alt="" width="100" height="100">
+            <td> <img src="{{asset('storage/'.$company->logo)}}" alt="" width="100" height="100">
             </td>
             <td>{{$company->website}}</td>
             <td>
@@ -57,8 +57,7 @@
             "_token": token,
         },
         success:function(data) {
-          console.log(data);
-          // location.reload();
+          location.reload();
         }
     });
   }

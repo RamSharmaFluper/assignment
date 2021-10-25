@@ -59,9 +59,11 @@ class CompanyController extends Controller
                 $ext = pathinfo($path, PATHINFO_EXTENSION);
                     $compLogo = time().".". $request->logo->getClientOriginalName();
                         $move_file = $request->logo->move(
-                        base_path().'/storage/app/public', $compLogo
+                        base_path().'/storage10/app/public', $compLogo
                     );
                 
+                    Storage::disk('local')->put('example.txt', 'Contents');
+
             } 
             $comp = new Company;
             $comp->name = $request->name;
