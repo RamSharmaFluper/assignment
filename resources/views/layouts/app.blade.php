@@ -45,20 +45,20 @@
 
                     <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Language <span class="caret"></span>
+                            {{ trans('sentence.Language')}} <span class="caret"></span>
                             </a>
                             @switch($locale)
                                
                                 @case('es')
-                                <img src="{{asset('spanish.png')}}" width="30px" height="20x"> Spain
+                                <img src="{{asset('spanish.png')}}" width="30px" height="20x">  {{trans('sentence.Spanish')}}
                                 @break
                                
                                 @default
-                                <img src="{{asset('english.jpg')}}" width="30px" height="20x"> English
+                                <img src="{{asset('english.jpg')}}" width="30px" height="20x"> {{trans('sentence.English')}}
                             @endswitch
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="lang/en"><img src="{{asset('english.jpg')}}" width="30px" height="20x"> English</a>
-                                <a class="dropdown-item" href="lang/es"><img src="{{asset('spanish.png')}}" width="30px" height="20x"> Spanish</a>
+                                <a class="dropdown-item" href="lang/en"><img src="{{asset('english.jpg')}}" width="30px" height="20x"> {{trans('sentence.English')}}</a>
+                                <a class="dropdown-item" href="lang/es"><img src="{{asset('spanish.png')}}" width="30px" height="20x">{{trans('sentence.Spanish')}}</a>
                             </div>
                         </li>
 

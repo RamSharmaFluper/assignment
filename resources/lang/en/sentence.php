@@ -8,5 +8,9 @@ return [
   'Remember'=>'Remember Me',
   'Forgot'=>'Forgot Your Password?',
   'Login'=>'Login',
+  'Language'=>'Language',
+  'Spanish'=>'Spanish',
+  'English'=>'English'
+  
 
 ];
