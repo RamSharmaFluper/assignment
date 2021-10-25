@@ -1,7 +1,6 @@
 <?php
 use Illuminate\Support\Facades\DB;
-use App;
-use Auth;
+
 
 
 /*

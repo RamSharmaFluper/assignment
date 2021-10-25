@@ -57,7 +57,8 @@
             "_token": token,
         },
         success:function(data) {
-          location.reload();
+          console.log(data);
+          // location.reload();
         }
     });
   }

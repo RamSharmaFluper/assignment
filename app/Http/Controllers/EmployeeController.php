@@ -46,7 +46,7 @@ class EmployeeController extends Controller
             'first_name'=>'required',
             'last_name'=>'required',
             'email'=>'required|email|unique:employees,email',
-            'phone' => 'required|regex:/(91)[0-9]{9}/',
+            'phone' => 'required|regex:/[0-9]{9}/',
             'company_id' => 'required|exists:companies,id',
         );
         $validator = Validator::make($request->all(), $validation);

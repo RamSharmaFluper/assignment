@@ -64,7 +64,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('logo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="logo"  type="file" name="logo" class=" @error('logo') is-invalid @enderror" name="logo" value="{{ old('logo') }}">   
+                                <input id="logo"  type="file" name="logo" class="form-control @error('logo') is-invalid @enderror" name="logo" value="{{ old('logo') }}">   
                                
 
                                 @error('logo')

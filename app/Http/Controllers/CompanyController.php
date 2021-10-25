@@ -42,8 +42,9 @@ class CompanyController extends Controller
         $validation = array(
             'name'=>'required',
             'email'=>'required|email|unique:companies,email',
-            // 'logo' => 'mimes:jpeg,png|dimensions:min_width=100,min_height=100|nullable', 
-            //'website' => 'required'
+            'logo' => 'mimes:jpeg,jpg,png|dimensions:min_width=100,min_height=100|nullable', 
+            "website" => "url|nullable"
+
         );
         $validator = Validator::make($request->all(), $validation);
         if ($validator->fails()) {
@@ -56,15 +57,11 @@ class CompanyController extends Controller
                 
                 $path = $_FILES['logo']['name'];
                 $ext = pathinfo($path, PATHINFO_EXTENSION);
-                if($ext == "jpg" || $ext == "jpeg" || $ext == "png"){
                     $compLogo = time().".". $request->logo->getClientOriginalName();
                         $move_file = $request->logo->move(
                         base_path().'/storage/app/public', $compLogo
                     );
-                }else{
-                    $session = session()->flash('logo-alert','Logo must be in image format like (jpg,jpeg,png)');
-                    return redirect('add-company');
-                }
+                
             } 
             $comp = new Company;
             $comp->name = $request->name;
@@ -115,7 +112,9 @@ class CompanyController extends Controller
     {
         $validation = array(
             'name'=>'required',
-            'email'=>'required',
+            'email' => 'email:rfc,dns',
+            'logo' => 'mimes:jpeg,jpg,png|dimensions:min_width=100,min_height=100|nullable', 
+            "website" => "url|nullable"
         );
         $validator = Validator::make($request->all(), $validation);
         if ($validator->fails()) {
@@ -123,11 +122,23 @@ class CompanyController extends Controller
             ->withErrors($validator)
             ->withInput();
         }else{
+            $compLogo = $request->logo;
+            if(!empty($request->logo)){
+                $path = $_FILES['logo']['name'];
+                $ext = pathinfo($path, PATHINFO_EXTENSION);
+                    $compLogo = time().".". $request->logo->getClientOriginalName();
+                        $move_file = $request->logo->move(
+                        base_path().'/storage/app/public', $compLogo
+                    );
+                
+            }
             $comp = new Company();
             $company = $comp->find($id);
             $company->name = $request->name;
             $company->email = $request->email;
+            $company->logo = $compLogo;
             $company->website = $request->website;
+
             if($company->save()) {
                 return redirect('home');
             } else {
@@ -146,10 +157,9 @@ class CompanyController extends Controller
     {
         $comp = new Company();
         $file = $comp->find($id);
-        Storage::delete('app/public/'.$file->name);
+        unlink(storage_path('app/public/'.$file->logo));
         $destroy = $comp->destroy($id);
         if($destroy){
-            
             return $destroy;
         } else {
             return false;

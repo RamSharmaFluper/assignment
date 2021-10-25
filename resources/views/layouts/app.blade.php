@@ -48,30 +48,18 @@
                                 Language <span class="caret"></span>
                             </a>
                             @switch($locale)
-                                @case('fr')
-                                <img src="{{asset('img/fr.png')}}" width="30px" height="20x"> French
-                                @break
+                               
                                 @case('es')
-                                <img src="{{asset('img/jp.png')}}" width="30px" height="20x"> Spain
+                                <img src="{{asset('spanish.png')}}" width="30px" height="20x"> Spain
                                 @break
-                                @case('jp')
-                                <img src="{{asset('img/jp.png')}}" width="30px" height="20x"> Japanese
-                                @break
+                               
                                 @default
-                                <img src="{{asset('img/us.png')}}" width="30px" height="20x"> English
+                                <img src="{{asset('english.jpg')}}" width="30px" height="20x"> English
                             @endswitch
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="lang/en"><img src="{{asset('img/us.png')}}" width="30px" height="20x"> English</a>
-                                <a class="dropdown-item" href="lang/fr"><img src="{{asset('img/fr.png')}}" width="30px" height="20x"> French</a>
-                                <a class="dropdown-item" href="lang/es"><img src="{{asset('img/es.png')}}" width="30px" height="20x"> Spanish</a>
-                                <a class="dropdown-item" href="lang/jp"><img src="{{asset('img/jp.png')}}" width="30px" height="20x"> Japanese</a>
+                                <a class="dropdown-item" href="lang/en"><img src="{{asset('english.jpg')}}" width="30px" height="20x"> English</a>
+                                <a class="dropdown-item" href="lang/es"><img src="{{asset('spanish.png')}}" width="30px" height="20x"> Spanish</a>
                             </div>
-
-                            <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a href="#" onclick="setlocale('en')"  class="dropdown-item">English</a>
-                            <a href="#" onclick="setlocale('es')"  class="dropdown-item">Spanish</a>
-                               
-                            </div> -->
                         </li>
 
                     </ul>
@@ -120,22 +108,4 @@
 </html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
 
-  function setlocale(lang){
-    var token = $("meta[name='csrf-token']").attr("content");
-    $.ajax({
-        type:'POST',
-        url:'/setlocale',
-        data: {
-            "lang": lang,
-            "_token": token,
-        },
-        success:function(data) {
-            alert("sucess");
-            localStorage.setItem("lang", lang);
-          //location.reload();
-        }
-    });
-  }
-</script>
