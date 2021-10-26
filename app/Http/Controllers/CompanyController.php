@@ -7,6 +7,7 @@ use Validator;
 use Exception; 
 use App\Company;
 use Storage;
+use Response;
 
 class CompanyController extends Controller
 {
@@ -59,11 +60,8 @@ class CompanyController extends Controller
                 $ext = pathinfo($path, PATHINFO_EXTENSION);
                     $compLogo = time().".". $request->logo->getClientOriginalName();
                         $move_file = $request->logo->move(
-                        base_path().'/storage10/app/public', $compLogo
+                        base_path().'/storage/app/public/comp', $compLogo
                     );
-                
-                    Storage::disk('local')->put('example.txt', 'Contents');
-
             } 
             $comp = new Company;
             $comp->name = $request->name;
@@ -159,7 +157,7 @@ class CompanyController extends Controller
     {
         $comp = new Company();
         $file = $comp->find($id);
-        unlink(storage_path('app/public/'.$file->logo));
+        // unlink(storage_path('app/public/'.$file->logo));
         $destroy = $comp->destroy($id);
         if($destroy){
             return $destroy;

@@ -45,4 +45,7 @@ Route::get('lang/{locale}', function ($locale) {
     return redirect()->back();
 });
 
+Route::get('getDownload', 'HomeController@getDownload');
+
+
 
